@@ -18,8 +18,11 @@ class EventStore( object ):
     self.filename = filename
 
     # load all necessary libraries by hand
-    from lorenzetti_utils import dataframe_h
-    gROOT.ProcessLine(dataframe_h)
+    try:
+        from ROOT import xAOD
+    except:
+        from lorenzetti_utils import dataframe_h
+        gROOT.ProcessLine(dataframe_h)
 
     self.configure()
 
@@ -35,12 +38,12 @@ class EventStore( object ):
     # setup all containers
     from ROOT import xAOD, std
     self.__container = {
-                  "CaloClusterContainer"        : std.vector(xAOD.CaloCluster_t)(),
-                  "CaloCellContainer"           : std.vector(xAOD.CaloCell_t)(), 
-                  "CaloRingsContainer"          : std.vector(xAOD.CaloRings_t)(),
-                  "EventInfoContainer"          : std.vector(xAOD.EventInfo_t)(),
-                  "TruthParticleContainer"      : std.vector(xAOD.TruthParticle_t)(),
-                  "CaloDetDescriptorContainer"  : std.vector(xAOD.CaloDetDescriptor_t)(),
+                  "CaloClusterContainer_Clusters"     : std.vector(xAOD.CaloCluster_t)(),
+                  "CaloCellContainer_Cells"           : std.vector(xAOD.CaloCell_t)(), 
+                  "CaloRingsContainer_Rings"          : std.vector(xAOD.CaloRings_t)(),
+                  "EventInfoContainer_EventInfo"      : std.vector(xAOD.EventInfo_t)(),
+                  "TruthParticleContainer_Particles"  : std.vector(xAOD.TruthParticle_t)(),
+                  "CaloDetDescriptorContainer_Cells"  : std.vector(xAOD.CaloDetDescriptor_t)(),
                   }
 
     for key, cont in self.__container.items():

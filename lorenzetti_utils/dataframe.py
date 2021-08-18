@@ -87,5 +87,8 @@ dataframe_h ="\
           float et;\
           float eta;\
           float phi;\
+          float px;\
+          float py;\
+          float pz;\
         };\
       }"
