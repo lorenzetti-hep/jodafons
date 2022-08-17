@@ -1,6 +1,10 @@
 
 __all__ = []
 
+from . import utils
+__all__.extend( utils.__all__ )
+from .utils import *
+
 from . import dataframe
 __all__.extend( dataframe.__all__)
 from .dataframe import *
